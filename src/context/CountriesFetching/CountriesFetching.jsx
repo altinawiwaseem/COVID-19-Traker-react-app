@@ -1,9 +1,8 @@
-import React,{createContext, useState, useEffect} from 'react'
-
+import React, { createContext, useState, useEffect } from "react";
 
 export const CountriesFetchingContext = createContext();
 
-let initialData = []
+let initialData = [];
 
 const URL = "https://disease.sh/v3/covid-19/countries";
 
@@ -13,14 +12,11 @@ const countriesFetching = async (url) => {
   return data;
 };
 
-countriesFetching()
 export const CountriesFetchingContextProvider = ({ children }) => {
-    const [countries, setCountries] = useState(initialData)
+  const [countries, setCountries] = useState(initialData);
 
-
- useEffect(() => {
+  useEffect(() => {
     countriesFetching(URL).then((data) => setCountries(data));
-
   }, []);
   return (
     <CountriesFetchingContext.Provider value={{ countries, setCountries }}>
@@ -28,11 +24,3 @@ export const CountriesFetchingContextProvider = ({ children }) => {
     </CountriesFetchingContext.Provider>
   );
 };
-
-
-
-
-
-
-
-

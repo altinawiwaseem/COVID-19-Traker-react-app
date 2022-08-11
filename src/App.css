@@ -6,10 +6,53 @@
   padding: 0;
 }
 
+body {
+  background-color: #f5f6fa;
+}
+
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
 .header {
   display: flex;
-  width: 100vw;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.left {
+  flex: 0.9;
+}
+
+.infoBoxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 990px) {
+  .App {
+    flex-direction: column;
+  }
+}
+
+select {
+  width: 20vw;
+  height: 8vh;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
