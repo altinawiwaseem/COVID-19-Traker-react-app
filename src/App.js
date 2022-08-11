@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useContext } from "react";
+import { CountriesFetchingContext } from "./context/CountriesFetching/CountriesFetching";
+import "./App.css";
 
 function App() {
+  const { countries, setCountries } = useContext(CountriesFetchingContext);
+
+  console.log("countries", countries);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="header">
+        <h1>COVID-19 TRACKER</h1>
+        <from>
+          <select>
+            {countries.map((country, i) => (
+              <option key={i}>{country.country}</option>
+            ))}
+          </select>
+        </from>
+      </div>
+      {/* Header */}
+
+      {/* dropdown field */}
+
+      {/* InfoBoxs */}
+
+      {/* table */}
+      {/* Graphic */}
+
+      {/* Map */}
     </div>
   );
 }
