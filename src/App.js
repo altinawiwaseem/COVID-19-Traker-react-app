@@ -1,19 +1,32 @@
-import { useState, useEffect, useContext } from "react";
-import { CountriesFetchingContext } from "./context/CountriesFetching/CountriesFetching";
-import "./App.css";
+// Components
+/* import LineGraph from "./components/LineGraph/LineGraph"; */
 import InfoBox from "./components/InfoBox/InfoBox";
-import Map from "./components/Map/Map";
+import CoronaCasesMap from "./components/CoronaCasesMap/CoronaCasesMap";
+import Table from "./components/Table/Table";
+// React Hooks
+import { useState, useContext } from "react";
+// Context
+import { CountriesFetchingContext } from "./context/CountriesFetching/CountriesFetching";
+// React Icons
+import { BiSortAlt2 } from "react-icons/bi";
+// Styling Css
+import "./App.css";
+/* import LineGraph from "./components/LineGraph/LineGraph"; */
+import "leaflet/dist/leaflet.css";
 
 function App() {
   // Context
-  const { countries, tableData, countryInfo, setCountryInfo } = useContext(
+  const { allCountries, countryInfo, setCountryInfo } = useContext(
     CountriesFetchingContext
   );
 
   // State
   const [country, setCountry] = useState("All Countries");
+  const [sortCases, setSortCases] = useState(true);
 
-  // onChange function for choosing the country to show its data
+  const [mapCenter, setMapCenter] = useState({ lat: 54.526, lng: 15.2551 });
+  const [mapZoom, setMapZoom] = useState(3);
+
   const handleCountryChange = async (e) => {
     const countryCode = e.target.value;
     setCountry(countryCode);
@@ -26,6 +39,16 @@ function App() {
     const data = await response.json();
 
     setCountryInfo(data);
+    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+    setMapZoom(5);
+
+    console.log("mapCenter", mapCenter);
+  };
+
+  // handle sort change
+
+  const handleSortChange = () => {
+    setSortCases(!sortCases);
   };
 
   return (
@@ -37,7 +60,7 @@ function App() {
           <form>
             <select value={country} onChange={handleCountryChange}>
               <option value={"All Countries"}>All Countries</option>
-              {countries.map((country, i) => (
+              {allCountries.map((country, i) => (
                 <option value={country.countryInfo.iso2} key={i}>
                   {country.country}
                 </option>
@@ -66,17 +89,22 @@ function App() {
         </div>
 
         {/* Map */}
-        <Map />
+        <CoronaCasesMap mapCenter={mapCenter} mapZoom={mapZoom} />
       </div>
 
       <div className="right">
         {/* table */}
         <div>
-          <h3>Live Cases by Country</h3>
-          <table countries={tableData} />
+          <div className="liveCasesHeader">
+            <h3>Live Cases by Country</h3>
+            <BiSortAlt2 className="icon" onClick={handleSortChange} />
+          </div>
 
-          <h3> Worldwide New Cases</h3>
+          <Table sortCases={sortCases} />
         </div>
+        <h3> Worldwide New Cases</h3>
+        {/* <LineGraph /> */}
+        {/*  <LineGraph /> */}
       </div>
     </div>
   );

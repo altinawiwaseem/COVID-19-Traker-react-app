@@ -28,6 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: white;
+  padding: 1rem;
 }
 
 .left {
@@ -46,7 +47,7 @@ body {
 }
 
 select {
-  width: 20vw;
+  width: 15vw;
   height: 8vh;
   outline: none;
   border: none;
@@ -55,4 +56,13 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.liveCasesHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  font-size: 2rem;
 }
