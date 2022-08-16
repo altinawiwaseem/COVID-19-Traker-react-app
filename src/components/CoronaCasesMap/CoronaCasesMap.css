@@ -43,3 +43,8 @@
 .leaflet-control-attribution {
   display: none;
 }
+
+.img {
+  width: 20px;
+  height: 15px;
+}

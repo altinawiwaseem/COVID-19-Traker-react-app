@@ -20,9 +20,6 @@ export const CountriesFetchingContextProvider = ({ children }) => {
   const [tableData, setTableData] = useState(initialData);
   const [countryInfo, setCountryInfo] = useState({});
 
-  console.log("cInfo", countryInfo);
-  console.log("allC", allCountries);
-
   /* const [lineGraph, setLineGraph] = useState({}); */
 
   // fetching all countries

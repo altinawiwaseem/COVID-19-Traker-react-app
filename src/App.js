@@ -25,7 +25,7 @@ function App() {
   const [sortCases, setSortCases] = useState(true);
 
   const [mapCenter, setMapCenter] = useState({ lat: 54.526, lng: 15.2551 });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(2);
 
   const handleCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -41,8 +41,6 @@ function App() {
     setCountryInfo(data);
     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
     setMapZoom(5);
-
-    console.log("mapCenter", mapCenter);
   };
 
   // handle sort change
@@ -89,7 +87,12 @@ function App() {
         </div>
 
         {/* Map */}
-        <CoronaCasesMap mapCenter={mapCenter} mapZoom={mapZoom} />
+        <CoronaCasesMap
+          mapCenter={mapCenter}
+          mapZoom={mapZoom}
+          allCountries={allCountries}
+          country={country}
+        />
       </div>
 
       <div className="right">
