@@ -3,12 +3,14 @@ import LineGraph from "./components/LineGraph/LineGraph";
 import InfoBox from "./components/InfoBox/InfoBox";
 import CoronaCasesMap from "./components/CoronaCasesMap/CoronaCasesMap";
 import Table from "./components/Table/Table";
+import DateAndTime from "./components/DateAndTime/DateAndTime";
 // React Hooks
 import { useState, useContext } from "react";
 // Context
 import { CountriesFetchingContext } from "./context/CountriesFetching/CountriesFetching";
 // React Icons
 import { BiSortAlt2 } from "react-icons/bi";
+import { BsSun, BsFillMoonStarsFill } from "react-icons/bs";
 // Styling Css
 import "./App.css";
 
@@ -21,6 +23,7 @@ function App() {
   );
 
   // State
+  const [theme, setTheme] = useState(false);
   const [country, setCountry] = useState("All Countries");
   const [sortCases, setSortCases] = useState(true);
 
@@ -48,82 +51,103 @@ function App() {
   const handleSortChange = () => {
     setSortCases(!sortCases);
   };
-
+  const themeClassName = theme ? "" : "dark";
   return (
-    <div className="App">
-      <div className="left">
-        {/* Header */}
-        <div className="header">
-          <h1>COVID-19 TRACKER</h1>
-          <form>
-            <select value={country} onChange={handleCountryChange}>
-              <option value={"All Countries"}>All Countries</option>
-              {allCountries.map((country, i) => (
-                <option value={country.countryInfo.iso2} key={i}>
-                  {country.country}
-                </option>
-              ))}
-            </select>
-          </form>
+    <div className={`App ${themeClassName}`}>
+      {/* Header */}
+
+      <div className="header">
+        <h1>COVID-19 TRACKER</h1>
+        <div
+          onClick={() => {
+            setTheme(!theme);
+          }}
+        >
+          {theme ? <BsFillMoonStarsFill /> : <BsSun />}
         </div>
 
-        {/* InfoBoxes */}
-        <div className="infoBoxes">
-          <InfoBox
-            title="Corona Virus Cases"
-            total={countryInfo.cases}
-            cases={countryInfo.todayCases}
-          />
-          <InfoBox
-            title="Recovered"
-            total={countryInfo.recovered}
-            cases={countryInfo.todayRecovered}
-          />
-          <InfoBox
-            title="Death"
-            total={countryInfo.deaths}
-            cases={countryInfo.todayDeaths}
-          />
-        </div>
-
-        {/* Map */}
-        <CoronaCasesMap
-          mapCenter={mapCenter}
-          mapZoom={mapZoom}
-          allCountries={allCountries}
-          country={country}
-        />
+        <form>
+          <select
+            className={themeClassName}
+            value={country}
+            onChange={handleCountryChange}
+          >
+            <option value={"All Countries"}>All Countries</option>
+            {allCountries.map((country, i) => (
+              <option value={country.countryInfo.iso2} key={i}>
+                {country.country}
+              </option>
+            ))}
+          </select>
+        </form>
       </div>
 
-      <div className="right">
-        {/* table */}
-        <div>
-          <div className="liveCasesHeader">
-            <h3>Live Cases by Country</h3>
-            <BiSortAlt2 className="icon" onClick={handleSortChange} />
-          </div>
+      {/* InfoBoxes */}
+      <div className={`infoBoxes ${themeClassName}`}>
+        <InfoBox
+          theme={themeClassName}
+          title="Cases"
+          total={countryInfo.cases}
+          cases={countryInfo.todayCases}
+        />
+        <InfoBox
+          theme={themeClassName}
+          title="Recovered"
+          total={countryInfo.recovered}
+          cases={countryInfo.todayRecovered}
+        />
+        <InfoBox
+          theme={themeClassName}
+          title="Death"
+          total={countryInfo.deaths}
+          cases={countryInfo.todayDeaths}
+        />
+      </div>
+      <div className={`body ${themeClassName}`}>
+        <div className={`left ${themeClassName}`}>
+          {/* table */}
 
-          <Table
-            sortCases={sortCases}
+          <DateAndTime />
+
+          <div className={`tables ${themeClassName}`}>
+            <div className="liveCasesHeader">
+              <h3>Live Cases by Country</h3>
+              <BiSortAlt2 className="icon" onClick={handleSortChange} />
+            </div>
+
+            <Table
+              theme={themeClassName}
+              sortCases={sortCases}
+              country={country}
+              setCountry={setCountry}
+              setMapCenter={setMapCenter}
+            />
+          </div>
+        </div>
+        {/* Map */}
+        <div className={`middle ${themeClassName}`}>
+          <CoronaCasesMap
+            className={themeClassName}
+            mapCenter={mapCenter}
+            mapZoom={mapZoom}
+            allCountries={allCountries}
             country={country}
-            setCountry={setCountry}
           />
         </div>
-        <h3> Worldwide New Cases</h3>
-        <LineGraph
-          className={"cases"}
-          casesType={"cases"}
-          labels={"Cases Rate"}
-        />
 
-        <h3> Worldwide Deaths</h3>
+        <div className={`right ${themeClassName}`}>
+          {/* LineGraph */}
 
-        <LineGraph
-          className={"deaths"}
-          casesType={"deaths"}
-          labels={"Deaths Rate"}
-        />
-        {/*  <LineGraph /> */}
+          <h3> Worldwide New Cases</h3>
+          <LineGraph className="chart" casesType={"cases"} />
+
+          <h3> Worldwide Deaths</h3>
+
+          <LineGraph
+            className={`chart ${themeClassName}`}
+            casesType={"deaths"}
+          />
+        </div>
       </div>
     </div>
   );

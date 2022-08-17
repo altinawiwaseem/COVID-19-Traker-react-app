@@ -15,11 +15,17 @@ tbody {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 }
 .table td {
   padding: 0.5rem;
 }
 table:nth-last-of-type(odd) {
   background-color: #f3f2f8;
+}
+
+.dark table:nth-last-of-type(odd) {
+  background-color: #424242;
+}
+.dark .table {
+  border: none;
 }

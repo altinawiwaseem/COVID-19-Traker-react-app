@@ -1,5 +1,4 @@
 .infoBox {
-  border-radius: 10px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -7,4 +6,37 @@
   align-items: center;
   min-width: 15vw;
   min-height: 15vh;
+  flex: 1;
+  border: 5px #f5f6fa solid;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
+}
+hr {
+  width: 100%;
+  border: 3px #f5f6fa solid;
+}
+p {
+  font-size: 12px;
+}
+.Cases {
+  color: red;
+}
+
+.Recovered {
+  color: green;
+}
+
+.dark {
+  background-color: #222;
+  color: white;
+  border: 5px #424242 solid;
+}
+.dark hr {
+  border: 3px #424242 solid;
 }

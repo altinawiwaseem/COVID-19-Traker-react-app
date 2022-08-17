@@ -6,7 +6,6 @@ import {
   TileLayer,
   useMap,
   Tooltip,
-  Popup,
 } from "react-leaflet";
 import numeral from "numeral";
 
@@ -17,6 +16,7 @@ import { Icon } from "leaflet";
 import { CountriesFetchingContext } from "../../context/CountriesFetching/CountriesFetching";
 //styling the map
 import "./CoronaCasesMap.css";
+import { useEffect } from "react";
 
 function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
   const { allCountries, countryInfo } = useContext(CountriesFetchingContext);
@@ -25,6 +25,7 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
   console.log("allCountries", allCountries);
 
   // Function to change the center of the map according to the user's choice of country
+
   function ChangeView({ center, zoom }) {
     const map = useMap();
     map.setView(center, zoom);

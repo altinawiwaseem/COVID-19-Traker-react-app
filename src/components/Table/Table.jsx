@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CountriesFetchingContext } from "../../context/CountriesFetching/CountriesFetching";
 import "./Table.css";
 
-function Table({ sortCases, setCountry, country }) {
+function Table({ sortCases, theme, setCountry, country, setMapCenter }) {
   const { tableData, countryInfo, setCountryInfo } = useContext(
     CountriesFetchingContext
   );
@@ -14,18 +14,19 @@ function Table({ sortCases, setCountry, country }) {
     ? sortedData
     : sortedData.sort().reverse();
 
-  const handelChoose = (e) => {
+  /*  const handelChoose = (e) => {
     const choice = e.target.getAttribute("data-attr");
+
     setCountry(choice);
-    setCountryInfo(country);
-  };
+    console.log(country);
+  }; */
 
   return (
-    <div className="table">
+    <div className={`table ${theme}`}>
       {sortCountriesData.map(({ country, cases }, i) => (
         <table key={i}>
           <tbody>
-            <tr onClick={handelChoose} data-attr={country}>
+            <tr /* onClick={handelChoose}  data-attr={country}*/>
               <td> {country} </td>
               <td>
                 <strong>{numeral(cases).format(0, 0)}</strong>

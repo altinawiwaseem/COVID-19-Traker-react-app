@@ -8,12 +8,15 @@
 
 body {
   background-color: #f5f6fa;
+  height: 100%;
 }
 
 .App {
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .header {
@@ -22,27 +25,58 @@ body {
   justify-content: space-between;
   margin-bottom: 20px;
 }
+.header h1 {
+  color: #fc3c3c;
+  font-size: 2rem;
+}
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  flex-wrap: wrap;
+}
+
 .right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem;
 }
 
+.middle {
+  flex: 1;
+  margin: 0 0.5rem;
+  background-color: white;
+  min-width: 400px;
+}
 .left {
-  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
 }
 
 .infoBoxes {
   display: flex;
   justify-content: space-between;
+  flex: 1;
 }
 
 @media (max-width: 990px) {
-  .App {
+  .body {
     flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -65,4 +99,26 @@ select {
 
 .icon {
   font-size: 2rem;
+}
+.dark {
+  background-color: #222;
+  color: white;
+}
+
+.dark .middle {
+  margin: none;
+  border: none;
+}
+.dark select {
+  background-color: #424242;
+}
+
+.dark .tables {
+  border: none;
+}
+.dark .left {
+  border-top: none;
+}
+.dark .right {
+  border-top: none;
 }
