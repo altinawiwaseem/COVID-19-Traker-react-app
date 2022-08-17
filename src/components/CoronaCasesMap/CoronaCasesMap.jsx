@@ -6,7 +6,9 @@ import {
   TileLayer,
   useMap,
   Tooltip,
+  Popup,
 } from "react-leaflet";
+import numeral from "numeral";
 
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
@@ -20,6 +22,7 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
   const { allCountries, countryInfo } = useContext(CountriesFetchingContext);
 
   console.log("countryInfo", countryInfo);
+  console.log("allCountries", allCountries);
 
   // Function to change the center of the map according to the user's choice of country
   function ChangeView({ center, zoom }) {
@@ -52,23 +55,27 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
             >
               <Tooltip>
                 <div>
-                  <i>
-                    {data.country}{" "}
+                  <div>
+                    {data.country}
                     <img
                       className="img"
                       src={data.countryInfo.flag}
                       alt="Country's flag"
                     />
-                  </i>
-                </div>
-                <div>
-                  <strong>Corona Cases:</strong> {data.cases}
-                </div>
-                <div>
-                  <strong>Active Cases:</strong> {data.active}
-                </div>
-                <div>
-                  <strong>Today Cases:</strong> {data.todayCases}
+                  </div>
+
+                  <div>
+                    <strong>Corona Cases:</strong>{" "}
+                    {numeral(data.cases).format("0,0")}
+                  </div>
+                  <div>
+                    <strong>Active Cases:</strong>{" "}
+                    {numeral(data.active).format("0,0")}
+                  </div>
+                  <div>
+                    <strong>Today Cases:</strong>{" "}
+                    {numeral(data.todayCases).format("0,0")}
+                  </div>
                 </div>
               </Tooltip>
             </Marker>
@@ -87,9 +94,10 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
             <Tooltip>
               <div>
                 <i>
-                  {countryInfo.country}{" "}
+                  {countryInfo.country}
+
                   <img
-                    className="img"
+                    className="img "
                     src={
                       countryInfo.countryInfo && countryInfo.countryInfo.flag
                     }
@@ -98,13 +106,16 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
                 </i>
               </div>
               <div>
-                <strong>Corona Cases:</strong> {countryInfo.cases}
+                <strong>Corona Cases:</strong>
+                {numeral(countryInfo.cases).format("0,0")}
               </div>
               <div>
-                <strong>Active Cases:</strong> {countryInfo.active}
+                <strong>Active Cases:</strong>
+                {numeral(countryInfo.active).format("0,0")}
               </div>
               <div>
-                <strong>Today Cases:</strong> {countryInfo.todayCases}
+                <strong>Today Cases:</strong>
+                {numeral(countryInfo.todayCases).format("0,0")}
               </div>
             </Tooltip>
           </Marker>

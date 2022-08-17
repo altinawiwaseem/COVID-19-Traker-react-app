@@ -1,5 +1,5 @@
 // Components
-/* import LineGraph from "./components/LineGraph/LineGraph"; */
+import LineGraph from "./components/LineGraph/LineGraph";
 import InfoBox from "./components/InfoBox/InfoBox";
 import CoronaCasesMap from "./components/CoronaCasesMap/CoronaCasesMap";
 import Table from "./components/Table/Table";
@@ -11,7 +11,7 @@ import { CountriesFetchingContext } from "./context/CountriesFetching/CountriesF
 import { BiSortAlt2 } from "react-icons/bi";
 // Styling Css
 import "./App.css";
-/* import LineGraph from "./components/LineGraph/LineGraph"; */
+
 import "leaflet/dist/leaflet.css";
 
 function App() {
@@ -103,10 +103,26 @@ function App() {
             <BiSortAlt2 className="icon" onClick={handleSortChange} />
           </div>
 
-          <Table sortCases={sortCases} />
+          <Table
+            sortCases={sortCases}
+            country={country}
+            setCountry={setCountry}
+          />
         </div>
         <h3> Worldwide New Cases</h3>
-        {/* <LineGraph /> */}
+        <LineGraph
+          className={"cases"}
+          casesType={"cases"}
+          labels={"Cases Rate"}
+        />
+
+        <h3> Worldwide Deaths</h3>
+
+        <LineGraph
+          className={"deaths"}
+          casesType={"deaths"}
+          labels={"Deaths Rate"}
+        />
         {/*  <LineGraph /> */}
       </div>
     </div>
