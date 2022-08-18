@@ -23,6 +23,7 @@ Create COVID-19-TRACKER react app
 - [x] _CSS3_
 - [x] _JavaScript_
 - [x] _React_
+- [x] _Api_
 - [x] _Leafletjs-map_
 - [x] _Chart.js_
 - [x] _React-chartjs-2_
@@ -40,6 +41,7 @@ GitHub: [Altinawiwaseem](https://github.com/altinawiwaseem)
 
 ### Used Tools
 
+- [Api](https://disease.sh/)
 - [Map](https://leafletjs.com/)
 - [Chart](https://www.chartjs.org/)
 - [Icons](https://react-icons.github.io/react-icons/)
