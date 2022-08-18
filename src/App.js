@@ -29,6 +29,7 @@ function App() {
 
   const [mapCenter, setMapCenter] = useState({ lat: 54.526, lng: 15.2551 });
   const [mapZoom, setMapZoom] = useState(2);
+  const [casesType, setCasesType] = useState("cases");
 
   const handleCountryChange = async (e) => {
     const countryCode = e.target.value;
@@ -119,6 +120,7 @@ function App() {
               theme={themeClassName}
               sortCases={sortCases}
               country={country}
+              casesType={casesType}
               setCountry={setCountry}
               setMapCenter={setMapCenter}
             />

@@ -64,14 +64,21 @@ const buildChargeData = (data, casesType) => {
   return chartData;
 };
 
-const color = {
+export const color = {
   cases: {
     backgroundColor: "rgba(204, 16, 52, 0.5)",
     borderColor: "#CC1034",
+    multiplier: 130,
   },
   deaths: {
-    backgroundColor: "black",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     borderColor: "black",
+    multiplier: 1000,
+  },
+  recovered: {
+    backgroundColor: "rgba(0, 128, 0, 0.5)",
+    borderColor: "black",
+    multiplier: 120,
   },
 };
 

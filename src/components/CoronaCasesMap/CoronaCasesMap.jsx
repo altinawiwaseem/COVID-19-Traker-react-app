@@ -6,6 +6,8 @@ import {
   TileLayer,
   useMap,
   Tooltip,
+  Circle,
+  CircleMarker,
 } from "react-leaflet";
 import numeral from "numeral";
 
@@ -16,13 +18,11 @@ import { Icon } from "leaflet";
 import { CountriesFetchingContext } from "../../context/CountriesFetching/CountriesFetching";
 //styling the map
 import "./CoronaCasesMap.css";
-import { useEffect } from "react";
+// import Color object from lineGraph component
+import { color } from "../LineGraph/LineGraph";
 
-function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
+function CoronaCasesMap({ casesType, mapCenter, mapZoom, country }) {
   const { allCountries, countryInfo } = useContext(CountriesFetchingContext);
-
-  console.log("countryInfo", countryInfo);
-  console.log("allCountries", allCountries);
 
   // Function to change the center of the map according to the user's choice of country
 
@@ -32,6 +32,19 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
     return null;
   }
 
+  const circleData = (data, casesType = "cases") => {
+    const result = data.map((country) => (
+      <Circle
+        center={[country.countryInfo.lat, country.countryInfo.long]}
+        fillOpacity={0.4}
+        color={color[casesType].backgroundColor}
+        fillColor={color[casesType].backgroundColor}
+        radius={Math.sqrt(country[casesType]) * color[casesType].multiplier}
+      ></Circle>
+    ));
+    return result;
+  };
+
   return (
     <div className="map">
       <MapContainer center={mapCenter} zoom={mapZoom}>
@@ -40,6 +53,7 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
+        {circleData(allCountries, casesType)}
 
         {country === "All Countries" ? (
           allCountries.map((data, i) => (
@@ -70,11 +84,11 @@ function CoronaCasesMap({ countries, casesType, mapCenter, mapZoom, country }) {
                     {numeral(data.cases).format("0,0")}
                   </div>
                   <div>
-                    <strong>Active Cases:</strong>{" "}
+                    <strong>Active Cases:</strong>
                     {numeral(data.active).format("0,0")}
                   </div>
                   <div>
-                    <strong>Today Cases:</strong>{" "}
+                    <strong>Today Cases:</strong>
                     {numeral(data.todayCases).format("0,0")}
                   </div>
                 </div>
