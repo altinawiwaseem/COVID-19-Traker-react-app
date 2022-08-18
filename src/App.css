@@ -12,6 +12,7 @@ body {
 }
 
 .App {
+  width: 100vw;
   display: flex;
   justify-content: space-evenly;
   padding: 20px;
@@ -79,6 +80,24 @@ form {
   .body {
     flex-direction: column;
     justify-content: center;
+  }
+  .header {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .infoBoxes {
+    display: flex;
+    width: 400px;
+    flex: 1;
+  }
+  .App {
+    width: 450px;
+  }
+  .map {
+    width: 400px;
+  }
+  .middle {
+    width: 400px;
   }
 }
 

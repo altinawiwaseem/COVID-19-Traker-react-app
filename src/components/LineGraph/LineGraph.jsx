@@ -73,7 +73,7 @@ function LineGraph({ casesType }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=100")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=90")
         .then((response) => {
           return response.json();
         })
