@@ -2,14 +2,17 @@ import { Circle, Popup, Tooltip } from "react-leaflet";
 import numeral from "numeral";
 import { color } from "../LineGraph/LineGraph";
 
-function Circles({ data, casesType = "cases" }) {
-  const circleData = (data, casesType = "cases") => {
-    const result = data.map((country) => (
+function Circles({ data, casesType }) {
+  const circleData = (data, casesType) => {
+    const result = data.map((country, i) => (
       <Circle
+        key={i}
         center={[country.countryInfo.lat, country.countryInfo.long]}
         fillOpacity={1}
-        color={color[casesType].backgroundColor}
-        fillColor={color[casesType].backgroundColor}
+        pathOptions={{
+          color: color[casesType].backgroundColor,
+          fillColor: color[casesType].backgroundColor,
+        }}
         radius={Math.sqrt(country[casesType]) * color[casesType].multiplier}
       >
         <Popup>
@@ -19,17 +22,19 @@ function Circles({ data, casesType = "cases" }) {
               src={country.countryInfo.flag}
               alt="Country's flag"
             />
-            <div>{country.country}</div>
+            <div className="info">
+              <strong>{country.country}</strong>{" "}
+            </div>
 
-            <div>
+            <div className="info">
               <strong>Corona Cases:</strong>{" "}
               {numeral(country.cases).format("0,0")}
             </div>
-            <div>
+            <div className="info">
               <strong>Active Cases:</strong>
               {numeral(country.active).format("0,0")}
             </div>
-            <div>
+            <div className="info">
               <strong>Today Cases:</strong>
               {numeral(country.todayCases).format("0,0")}
             </div>
@@ -40,7 +45,7 @@ function Circles({ data, casesType = "cases" }) {
     return result;
   };
 
-  return <div>{circleData(data, (casesType = "cases"))}</div>;
+  return <div>{circleData(data, casesType)}</div>;
 }
 
 export default Circles;

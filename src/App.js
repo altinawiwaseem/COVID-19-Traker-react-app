@@ -26,7 +26,6 @@ function App() {
   const [theme, setTheme] = useState(false);
   const [country, setCountry] = useState("All Countries");
   const [sortCases, setSortCases] = useState(true);
-
   const [mapCenter, setMapCenter] = useState({ lat: 54.526, lng: 15.2551 });
   const [mapZoom, setMapZoom] = useState(2);
   const [casesType, setCasesType] = useState("cases");
@@ -86,18 +85,24 @@ function App() {
       {/* InfoBoxes */}
       <div className={`infoBoxes ${themeClassName}`}>
         <InfoBox
+          active={casesType === "cases"}
+          onClick={(e) => setCasesType("cases")}
           theme={themeClassName}
           title="Cases"
           total={countryInfo.cases}
           cases={countryInfo.todayCases}
         />
         <InfoBox
+          active={casesType === "recovered"}
+          onClick={(e) => setCasesType("recovered")}
           theme={themeClassName}
           title="Recovered"
           total={countryInfo.recovered}
           cases={countryInfo.todayRecovered}
         />
         <InfoBox
+          active={casesType === "deaths"}
+          onClick={(e) => setCasesType("deaths")}
           theme={themeClassName}
           title="Death"
           total={countryInfo.deaths}
@@ -129,6 +134,7 @@ function App() {
         {/* Map */}
         <div className={`middle ${themeClassName}`}>
           <CoronaCasesMap
+            casesType={casesType}
             className={themeClassName}
             mapCenter={mapCenter}
             mapZoom={mapZoom}

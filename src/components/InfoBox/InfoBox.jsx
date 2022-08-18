@@ -2,9 +2,12 @@ import numeral from "numeral";
 import React from "react";
 import "./InfoBox.css";
 
-function InfoBox({ title, cases, total, theme }) {
+function InfoBox({ title, cases, total, active, theme, onClick }) {
   return (
-    <div className={`infoBox ${theme}`}>
+    <div
+      className={`infoBox ${theme} ${active && "selected"} `}
+      onClick={onClick}
+    >
       <div className="infoBox_cases box">
         <p className="infoBox_title box"> Today's {title}</p>
         <h2 className={title}>{numeral(cases).format(0, 0)}</h2>

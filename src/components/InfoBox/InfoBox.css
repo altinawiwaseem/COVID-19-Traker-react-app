@@ -8,6 +8,7 @@
   min-height: 15vh;
   flex: 1;
   border: 5px #f5f6fa solid;
+  cursor: pointer;
 }
 
 .box {
@@ -39,4 +40,13 @@ p {
 }
 .dark hr {
   border: 3px #424242 solid;
+}
+.selected {
+  background-color: rgba(144, 238, 144, 0.4);
+}
+.dark .selected {
+  background-color: rgba(144, 238, 144, 0.4);
+}
+.dark .selected .Recovered {
+  color: white;
 }

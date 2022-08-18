@@ -1,20 +1,21 @@
 import { useContext } from "react";
 // importing the map from leaflet map
 import { Marker, MapContainer, TileLayer, useMap } from "react-leaflet";
-
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 
-//importing context
-import { CountriesFetchingContext } from "../../context/CountriesFetching/CountriesFetching";
 //styling the map
 import "./CoronaCasesMap.css";
 // import circle component
 import Circles from "./Circles";
 
-function CoronaCasesMap({ casesType, mapCenter, mapZoom, country }) {
-  const { allCountries } = useContext(CountriesFetchingContext);
-
+function CoronaCasesMap({
+  casesType,
+  mapCenter,
+  mapZoom,
+  country,
+  allCountries,
+}) {
   // Function to change the center of the map according to the user's choice of country
 
   function ChangeView({ center, zoom }) {
