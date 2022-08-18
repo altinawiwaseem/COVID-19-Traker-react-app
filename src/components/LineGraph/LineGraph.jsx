@@ -48,7 +48,7 @@ const options = {
   },
 };
 
-const buildChargeData = (data, casesType) => {
+const buildChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint;
   for (let date in data.cases) {
@@ -68,17 +68,17 @@ export const color = {
   cases: {
     backgroundColor: "rgba(204, 16, 52, 0.5)",
     borderColor: "#CC1034",
-    multiplier: 130,
+    multiplier: 70,
   },
   deaths: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     borderColor: "black",
-    multiplier: 1000,
+    multiplier: 500,
   },
   recovered: {
     backgroundColor: "rgba(0, 128, 0, 0.5)",
     borderColor: "black",
-    multiplier: 120,
+    multiplier: 50,
   },
 };
 
@@ -92,7 +92,7 @@ function LineGraph({ casesType, ...props }) {
           return response.json();
         })
         .then((data) => {
-          let chartData = buildChargeData(data, casesType);
+          let chartData = buildChartData(data, casesType);
           setData(chartData);
         });
     };

@@ -17,6 +17,6 @@
 }
 
 .img {
-  width: 20px;
-  height: 15px;
+  width: 100%;
+  border-radius: 10px;
 }
