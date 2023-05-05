@@ -13,9 +13,7 @@ _for practicing purpose_
 
 ### about the project
 
-Create COVID-19-TRACKER react app
-
-- using react
+App to track Covid-19 cases around the world spotting cases on the map and give daily and total deaths, recovers and cases.
 
 #### Developed with
 
@@ -34,8 +32,10 @@ Create COVID-19-TRACKER react app
 
 ### Contact
 
-Email: <wasemm@live.com><br>
-GitHub: [Altinawiwaseem](https://github.com/altinawiwaseem)
+Email: <wasemm@live.com> <br>
+GitHub: [Github page](https://github.com/altinawiwaseem)<br>
+Linkedin: [Linkikedin page](https://www.linkedin.com/in/waseem-altinawi/)<br>
+Portfolio: [Portfolio Website](https://altinawiwaseem.vercel.app/)
 
 ---
 
