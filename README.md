@@ -1,9 +1,8 @@
 # COVID-19-TRACKER
 
-**COVID-19-TRACKER React-App project**  
-_for practicing purpose_
+**COVID-19-TRACKER React-App project**
 
-[Test it by yourself](https://covid-19-traker-react-6mpkbu00r-altinawiwaseem.vercel.app/)
+[Click here to test it by yourself](https://covid-19-traker-react-6mpkbu00r-altinawiwaseem.vercel.app/)
 
 ---
 
@@ -34,7 +33,7 @@ App to track Covid-19 cases around the world spotting cases on the map and give 
 
 Email: <wasemm@live.com> <br>
 GitHub: [Github page](https://github.com/altinawiwaseem)<br>
-Linkedin: [Linkikedin page](https://www.linkedin.com/in/waseem-altinawi/)<br>
+Linkedin: [Linkedin page](https://www.linkedin.com/in/waseem-altinawi/)<br>
 Portfolio: [Portfolio Website](https://altinawiwaseem.vercel.app/)
 
 ---
